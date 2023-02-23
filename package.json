@@ -1,0 +1,30 @@
+{
+  "name": "remote-assignments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccy05327/remote-assignments.git"
+  },
+  "author": "Cynthia Tang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccy05327/remote-assignments/issues"
+  },
+  "homepage": "https://github.com/ccy05327/remote-assignments#readme"
+}
