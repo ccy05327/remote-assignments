@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User</title>
+  </head>
+  <body>
+    <h1>User check</h1>
+    <form method="POST" action="/users" onsubmit="return validateForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+      <span id="nameError" style="color: red"></span><br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br />
+      <span id="emailError" style="color: red"></span><br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+      <span id="passwordError" style="color: red"></span><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+  <script>
+    function validateForm() {
+      const nameInput = document.getElementById("name");
+      const name = nameInput.value;
+      const nameRegex = /^[a-zA-Z0-9]*$/;
+
+      if (!nameRegex.test(name)) {
+        const nameError = document.getElementById("nameError");
+        nameError.innerHTML =
+          "Name can only contain English alphabet and numbers.";
+        return false;
+      }
+
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(email)) {
+        const emailError = document.getElementById("emailError");
+        emailError.innerHTML = "Invalid email format.";
+        return false;
+      }
+
+      const passwordInput = document.getElementById("password");
+      const password = passwordInput.value;
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+~`\-={}[\]\\|:;"'<>,.?/])[A-Za-z\d!@#$%^&*()_+~`\-={}[\]\\|:;"'<>,.?/]{4,}$/;
+
+      if (!passwordRegex.test(password)) {
+        const passwordError = document.getElementById("passwordError");
+        passwordError.innerHTML =
+          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</html>
