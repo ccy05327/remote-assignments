@@ -1,27 +1,33 @@
 const mysql = require("mysql2");
 
-const connection = mysql.createConnection({
+const cors = require("cors");
+const { check, validationResult } = require("express-validator");
+
+// Create a connection pool to the AWS RDS MySQL database
+const pool = mysql.createPool({
+  connectionLimit: 10,
   host: "database-1.cwh9i5ebaxwd.us-east-1.rds.amazonaws.com",
   user: "admin",
   password: "remotelearning",
   database: "assignment",
+  port: 3000,
 });
 
-connection.connect((err) => {
+pool.getConnection((err, connection) => {
   if (err) {
     console.error("Error connecting to MySQL database:", err);
   } else {
     console.log("Connected to MySQL database!");
+    connection.release();
   }
 });
 
-// connection.query("DELETE FROM user WHERE id = 0;", (err) => {
+// pool.query("DELETE FROM user WHERE id = 0;", (err) => {
 //   if (err) throw err;
 // });
 
-connection.query("SELECT * FROM user", (error, results, fields) => {
+pool.query("SELECT * FROM user", (error, results, fields) => {
   if (error) throw error;
   console.log(results);
+  connection.release();
 });
-
-connection.end();
